@@ -1,0 +1,71 @@
+<?php
+
+namespace app\modules\api\models;
+
+use app\models\Article;
+use Yii;
+
+/**
+ * This is the model class for table "category".
+ *
+ * @property integer $id
+ * @property string $name
+ * @property string $slug
+ * @property string $created_at
+ * @property string $updated_at
+ *
+ * @property Article[] $articles
+ */
+class Category extends \yii\db\ActiveRecord
+{
+    const SCENARIO_CREATE = 'create';
+
+    /**
+     * @inheritdoc
+     */
+    public static function tableName()
+    {
+        return 'category';
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function rules()
+    {
+        return [
+            [['name'], 'required'],
+            [['created_at', 'updated_at'], 'safe'],
+            [['name'], 'string', 'max' => 32],
+            [['name'], 'unique'],
+        ];
+    }
+
+    public function scenarios()
+    {
+        $scenarios = parent::scenarios();
+        $scenarios['create'] = ['name'];
+        return $scenarios;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return [
+            'id' => 'ID',
+            'name' => 'Name',
+            'created_at' => 'Created At',
+            'updated_at' => 'Updated At',
+        ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getArticles()
+    {
+        return $this->hasMany(Article::className(), ['category_id' => 'id']);
+    }
+}
