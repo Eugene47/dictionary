@@ -1,3 +1,0 @@
-Options -Indexes
-RewriteEngine on
-RewriteRule ^(.*)$ web/$1 [L]
