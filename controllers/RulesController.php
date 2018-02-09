@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Category;
 use Yii;
 use app\models\Rules;
 use app\models\RulesSearch;
@@ -35,12 +36,12 @@ class RulesController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new RulesSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $rules = Rules::find()->orderBy(['id' => SORT_DESC])->all();
+        $category = Category::find()->all();
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+            'rules' => $rules,
+            'category' => $category,
         ]);
     }
 
@@ -54,7 +55,7 @@ class RulesController extends Controller
     {
         return $this->render('view', [
             'model' => $this->findModel($id),
-        ]);
+        ]);;
     }
 
     /**

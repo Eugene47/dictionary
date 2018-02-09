@@ -1,3 +1,46 @@
 .cbalink{
     display: none;
 }
+
+.nav-header {
+    display: block;
+    padding: 3px 15px;
+    font-size: 11px;
+    font-weight: bold;
+    line-height: 20px;
+    color: #999999;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+}
+.rule-card{
+    background-color: #f5f5f5;
+    border: 1px solid #e3e3e3;
+    padding: 20px;
+    box-shadow: 1px 0px 10px 0px #c6c6c6;
+}
+.rule-card h2{
+    margin-top: 0;
+}
+
+.rule-card+ .rule-card{
+    margin-top: 30px;
+}
+.side-bar{
+    box-shadow: 1px 0px 10px 0px #c6c6c6;
+}
+.rule-simple{
+    background-color: #f5f5f5;
+    border: 1px solid #e3e3e3;
+    padding: 20px;
+    box-shadow: 1px 0px 10px 0px #c6c6c6;
+}
+.rule-simple h1{
+    border-bottom: 2px solid #e6e6e6;
+    padding-bottom: 19px;
+}
+.side-bar-buttons{
+    margin: 10px;
+}
+.side-bar-buttons a + a{
+    margin-left: 5px;
+}
