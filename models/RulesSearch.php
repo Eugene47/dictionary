@@ -57,12 +57,19 @@ class RulesSearch extends Rules
             return $dataProvider;
         }
 
+        $query->joinWith('category as c');
+
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
             'category_id' => $this->category_id,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
+        ]);
+
+        $query->andFilterWhere([
+            'or',
+            ['=', 'c.id', $this->category_id]
         ]);
 
         $query->andFilterWhere(['like', 'title', $this->title])

@@ -1,6 +1,8 @@
 <?php
 
 use app\models\Category;
+use yii\helpers\Html;
+
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\DictionarySearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -18,7 +20,7 @@ $this->title = 'Rules';
             <?php foreach ($rules as $rule):?>
             <div class="rule-card">
                 <div class="rule-title">
-                    <h2><a href="rules/view/?id=<?= $rule->id?>"><?= $rule->title?></a></h2>
+                    <h2><a href="view/?id=<?= $rule->id?>"><?= $rule->title?></a></h2>
                     <span class="label label-info"><?= Category::findOne($rule->category_id)->name?></span>
                 </div>
             </div>
@@ -30,7 +32,7 @@ $this->title = 'Rules';
                     <ul class="nav nav-list">
                         <li class="nav-header">Categories</li>
                         <?php foreach ($category as $cat):?>
-                            <li><a href="#"> <?= $cat->name?> <span class="badge badge-info"><?= count(\app\models\Rules::find()->where(['category_id' => $cat->id])->all())?></span></a></li>
+                            <li><?= Html::a(\Yii::t('app', $cat->name . " " . "<span class=\"badge badge-info\">" .count(\app\models\Rules::find()->where(['category_id' => $cat->id])->all()). "</span>"),['rules/index', 'RulesSearch[category_id]' => $cat->id])?></li>
                         <?php endforeach;?>
                     </ul>
                 </div>
